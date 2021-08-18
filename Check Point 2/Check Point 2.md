@@ -5,7 +5,7 @@
 1. Get a list of all film titles and their inventory number – even those we don’t have.
    - You might like to limit the output to 200 to check you have everything looking like this
 
-![image-20210818235505831](images\image-20210818235505831.png)
+![image-20210818235505831](./images/image-20210818235505831.png)
 
 ```sql
 
@@ -13,14 +13,14 @@
 2. Which films do we not have in stock?
    - There are 42 records beginning with:
 
-![image-20210818235615536](images\image-20210818235615536.png)
+![image-20210818235615536](./images/image-20210818235615536.png)
 
 ```sql
 
 ```
 3. List the number of films in which each actor has featured (sort the output in descending order of the number of films)
 
-![image-20210818235704849](images\image-20210818235704849.png)
+![image-20210818235704849](./images/image-20210818235704849.png)
 
 ```sql
 
@@ -31,14 +31,14 @@
 4. The store uses a formula to calculate the return‐on‐investment (or ROI) which is (rental_rate / replacement_cost * 100). 
    - List the films, rental replacement cost and ROI which have an ROI more than 10. Order by ROI. *Only have the formula once in the query*
 
-![image-20210818235813093](images\image-20210818235813093.png)
+![image-20210818235813093](./images/image-20210818235813093.png)
 
 ```sql
 
 ```
 5.  List the maximum, minimum and average film replacement cost using subselects in the select clause only (do not use a FROM clause in the main query) – yes this is silly.
 
-![image-20210818235859008](images\image-20210818235859008.png)
+![image-20210818235859008](./images/image-20210818235859008.png)
 
 ```sql
 
