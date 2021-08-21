@@ -93,11 +93,23 @@ Use a sub‐select in the “where” clause to answer these – even if you can
 
 9. List all of the cities in Indonesia – using a join rather than sub‐query
 ```sql
-    
+select film.title as Movie, category.name as Category
+from film 
+join film_category
+on film.film_id = film_category.film_id
+join category
+on film_category.category_id = category.category_id
+order by category.name;
 ```
 10. Make a list showing the number of payments  for each customer (hint – needs a join and a group by). Order this list by the number of payments to identify the most frequent customers.
 ```sql
-    
+select film.title as Movie, category.name as Category
+from film 
+join film_category
+on film.film_id = film_category.film_id
+join category
+on film_category.category_id = category.category_id
+order by category.name;
 ```
 
 #### Self Join
@@ -166,22 +178,22 @@ Getting silly now?
 
 16. List the number of actors who have been seen in films rented by each customer
 ```sql
-select 
+select
 customer.first_name as "First Name", 
 customer.last_name as "Last Name", 
-count(actor.actor_id) as "actors", 
-count(film.film_id) AS "films watched"
-from customer
-join rental
-on customer.customer_id = rental.customer_id
-join inventory
-on rental.inventory_id = inventory.inventory_id
-join film
-on inventory.film_id = film.film_id
+count(*) as "Actor Count"
+from actor
 join film_actor
-on film.film_id = film_actor.film_id
-join actor
-on film_actor.actor_id = actor.actor_id
-group by film.title;
+on actor.actor_id = film_actor.actor_id
+join film
+on film_actor.film_id = film.film_id
+join inventory
+on film.film_id = inventory.film_id
+join rental 
+on inventory.inventory_id = rental.inventory_id
+join customer
+on rental.customer_id = customer.customer_id
+group by customer.customer_id
+order by customer.last_name;
 ```
 
