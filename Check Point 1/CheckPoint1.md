@@ -35,6 +35,7 @@ Use a sub‐select in the “where” clause to answer these – even if you can
 4. List longest films (hint max(length)? (there are 10) - ***I could not figure this one out***
 
    ```sql
+   # attempt 1
    select title, length
    from film as f1
    where not exists
@@ -42,8 +43,12 @@ Use a sub‐select in the “where” clause to answer these – even if you can
    from film as f2
    where f1.length < f2.length);
    
-   # I have no idea how to use max(length) in a way that works
-   # This is the only way I could get the result needed
+   # Finally worked it out :) :thumbsup:
+   
+   select title
+   from film
+   where length = 
+   (select MAX(length) from film);
    ```
    
    
@@ -161,7 +166,11 @@ Getting silly now?
 
 16. List the number of actors who have been seen in films rented by each customer
 ```sql
-select customer.first_name as "First Name", customer.last_name as "Last Name", count(actor.actor_id) as "actors", count(film.film_id) AS "films watched"
+select 
+customer.first_name as "First Name", 
+customer.last_name as "Last Name", 
+count(actor.actor_id) as "actors", 
+count(film.film_id) AS "films watched"
 from customer
 join rental
 on customer.customer_id = rental.customer_id
