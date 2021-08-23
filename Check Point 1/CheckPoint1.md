@@ -32,7 +32,7 @@ Use a sub‐select in the “where” clause to answer these – even if you can
    not in (select film_id from inventory where inventory.film_id = film.film_id);
    ```
 
-4. List longest films (hint max(length)? (there are 10) - ***I could not figure this one out***
+4. List longest films (hint max(length)? (there are 10)
 
    ```sql
    # attempt 1
@@ -58,7 +58,10 @@ Use a sub‐select in the “where” clause to answer these – even if you can
 5. Who are the students who share the highest GPA? (there are 4 – what is the query?)
 
    ```sql
-   
+   Select sID, sName, GPA
+   From student
+   Where GPA in
+   (select max(GPA) from student);
    ```
 
    
@@ -66,13 +69,21 @@ Use a sub‐select in the “where” clause to answer these – even if you can
 6. How many people have a GPA higher than the average? (answer is 7)
 
    ```sql
-   
+   Select count(*)
+   From student
+   where GPA in
+   (select avg(gpa) from student);
    ```
 
 7. List the names of the students who were accepted somewhere (there are 6)
 
    ```sql
-   
+   select sName
+   from student
+   where sID in
+   (select sID 
+    from apply 
+    where decision = "Y");
    ```
 
    
@@ -82,12 +93,17 @@ Use a sub‐select in the “where” clause to answer these – even if you can
     - The actual answer is two people – Bob and Craig.
 
     ```sql
-    
+    select sID, sName
+    from student
+    where sID not in
+    (select sID from apply where decision = "Y")
+    and sID in
+    (select sID from apply);
     ```
 
 ### Join Exercises
 
-**Use the Sakila database on Maria**
+**Use the *Sakila* database on Maria**
 
 #### Two Table Joins
 
