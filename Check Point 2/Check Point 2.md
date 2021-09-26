@@ -39,7 +39,14 @@ from rental r where r.rental_date IS NOT NULL;
 ![image-20210818235704849](images/image-20210818235704849.png)
 
 ```sql
-
+SELECT a.first_name, a.last_name, COUNT(f.title) AS Title_Count
+FROM actor a
+LEFT JOIN film_actor fa
+ON a.actor_id = fa.actor_id
+LEFT JOIN film f
+ON fa.film_id = f.film_id
+GROUP BY a.actor_id
+ORDER BY Title_Count DESC;
 ```
 
 ### Techniques from this week
@@ -50,7 +57,11 @@ from rental r where r.rental_date IS NOT NULL;
 ![image-20210818235813093](images/image-20210818235813093.png)
 
 ```sql
-
+SELECT f.title, f.replacement_cost, f.rental_rate, f.rental_rate / f.replacement_cost * 100 AS ROI
+FROM film f
+GROUP BY f.title
+HAVING ROI > 10.0
+ORDER BY ROI;
 ```
 5.  List the maximum, minimum and average film replacement cost using subselects in the select clause only (do not use a FROM clause in the main query) – yes this is silly.
 
