@@ -57,7 +57,8 @@ ORDER BY Title_Count DESC;
 ![image-20210818235813093](images/image-20210818235813093.png)
 
 ```sql
-SELECT f.title, f.replacement_cost, f.rental_rate, f.rental_rate / f.replacement_cost * 100 AS ROI
+SELECT f.title, f.replacement_cost, f.rental_rate, 
+f.rental_rate / f.replacement_cost * 100 AS ROI
 FROM film f
 GROUP BY f.title
 HAVING ROI > 10.0
@@ -68,7 +69,19 @@ ORDER BY ROI;
 ![image-20210818235859008](images/image-20210818235859008.png)
 
 ```sql
-
+SELECT 
+(
+   SELECT MAX(fi.replacement_cost)
+   FROM film fi 
+) max_cost,
+(
+   SELECT MIN(fi.replacement_cost)
+   FROM film fi 
+) min_cost,
+(
+   SELECT AVG(fi.replacement_cost)
+   FROM film fi 
+) avg_cost;
 ```
 ## Student Database on SQLite
 
