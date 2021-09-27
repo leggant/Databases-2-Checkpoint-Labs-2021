@@ -1,6 +1,6 @@
 # Joins Exercise 5‐2
 
-## Using sakila database - Checkpoint Lab
+## Using Sakila database - Checkpoint Lab
 
 1. Get a list of all film titles and their inventory number – even those we don’t have.
    - You might like to limit the output to 200 to check you have everything looking like this
@@ -14,6 +14,7 @@ RIGHT JOIN film f
 ON f.film_id = i.film_id
 LIMIT 200;
 ```
+
 2. Which films do we not have in stock?
    - There are 42 records beginning with:
 
@@ -24,7 +25,7 @@ SELECT DISTINCT f.title
 FROM film f
 LEFT JOIN inventory i
 ON f.film_id = i.inventory_id
-WHERE i.inventory_id IN 
+WHERE i.inventory_id IN
 (SELECT r.inventory_id
 FROM rental r
 WHERE r.rental_date
@@ -34,6 +35,7 @@ ON i.inventory_id = r.inventory_id
 WHERE i.inventory_id NOT IN r.inventory_id;
 from rental r where r.rental_date IS NOT NULL;
 ```
+
 3. List the number of films in which each actor has featured (sort the output in descending order of the number of films)
 
 ![image-20210818235704849](images/image-20210818235704849.png)
@@ -51,38 +53,40 @@ ORDER BY Title_Count DESC;
 
 ### Techniques from this week
 
-4. The store uses a formula to calculate the return‐on‐investment (or ROI) which is (rental_rate / replacement_cost * 100). 
-   - List the films, rental replacement cost and ROI which have an ROI more than 10. Order by ROI. *Only have the formula once in the query*
+4. The store uses a formula to calculate the return‐on‐investment (or ROI) which is (rental_rate / replacement_cost \* 100).
+   - List the films, rental replacement cost and ROI which have an ROI more than 10. Order by ROI. _Only have the formula once in the query_
 
 ![image-20210818235813093](images/image-20210818235813093.png)
 
 ```sql
-SELECT f.title, f.replacement_cost, f.rental_rate, 
+SELECT f.title, f.replacement_cost, f.rental_rate,
 f.rental_rate / f.replacement_cost * 100 AS ROI
 FROM film f
 GROUP BY f.title
 HAVING ROI > 10.0
 ORDER BY ROI;
 ```
+
 5.  List the maximum, minimum and average film replacement cost using subselects in the select clause only (do not use a FROM clause in the main query) – yes this is silly.
 
 ![image-20210818235859008](images/image-20210818235859008.png)
 
 ```sql
-SELECT 
+SELECT
 (
    SELECT MAX(fi.replacement_cost)
-   FROM film fi 
+   FROM film fi
 ) max_cost,
 (
    SELECT MIN(fi.replacement_cost)
-   FROM film fi 
+   FROM film fi
 ) min_cost,
 (
    SELECT AVG(fi.replacement_cost)
-   FROM film fi 
+   FROM film fi
 ) avg_cost;
 ```
+
 ## Student Database on SQLite
 
 ### Techniques from earlier this week Not trivial, you’ll have to work on these.
@@ -90,11 +94,15 @@ SELECT
 6. List the students as pairs who come from the same sized high school. Order by school size.
    - Only list one pair of each student e.g. if you have Alice and Bob in a record don’t also list Bob and Alice (unless they are different students – we have two different AMY’s).
    - Work through this in stages – removing redundant pairs is the last step. You might like to display more information while developing the query (e.g. sid)
-```sql
 
+```sql
+SELECT * FROM Student
+ORDER BY sizeHS;
 ```
+
 7. List each student that has made an application and the number of ITP’s they have applied to.
    - This is a simple inner join but I did use something introduced in passing today to get this.
+
 ```sql
 
 ```
@@ -102,18 +110,25 @@ SELECT
 ## Subqueries and Outer Joins
 
 8. Which students have not applied anywhere?
+
 ```sql
 
 ```
+
 9. List a count of the number of applications made by each student
+
 ```sql
 
 ```
+
 10. List the number of institutions that each student has applied to:
+
 ```sql
 
 ```
+
 11. How many students have applied to each institution?
+
 ```sql
 
 ```
