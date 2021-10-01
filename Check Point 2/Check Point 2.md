@@ -153,7 +153,7 @@ ORDER BY count_itp_apps DESC;
 
 ```sql
 SELECT DISTINCT i.itpName as itp_name, (
-     SELECT COUNT(*)
+     SELECT COUNT(DISTINCT ap.sID)
      FROM apply ap
      WHERE ap.itpName = i.itpName
 ) AS count_students
