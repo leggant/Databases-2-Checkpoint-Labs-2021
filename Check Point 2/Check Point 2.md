@@ -112,7 +112,11 @@ ORDER BY sizeHS;
 8. Which students have not applied anywhere?
 
 ```sql
-
+SELECT sa.sID, sa.sName 
+FROM student sa
+LEFT JOIN apply ap
+ON ap.sID = sa.sID
+WHERE ap.sId IS NULL;
 ```
 
 9. List a count of the number of applications made by each student
