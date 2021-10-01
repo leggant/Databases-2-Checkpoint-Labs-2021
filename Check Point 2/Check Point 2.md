@@ -122,7 +122,14 @@ WHERE ap.sId IS NULL;
 9. List a count of the number of applications made by each student
 
 ```sql
-
+SELECT DISTINCT sa.sID, sa.sName, (
+SELECT COUNT(*)
+FROM apply ab
+WHERE ab.sid = ap.sid
+) AS count 
+FROM student sa
+LEFT JOIN apply ap
+ON ap.sID = sa.sID;
 ```
 
 10. List the number of institutions that each student has applied to:
