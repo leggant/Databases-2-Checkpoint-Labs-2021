@@ -136,20 +136,29 @@ ORDER BY count DESC;
 10. List the number of institutions that each student has applied to:
 
 ```sql
-SELECT DISTINCT sa.sID, sa.sName, (
+SELECT DISTINCT sa.sID as student_id, 
+sa.sName AS student_name, (
      SELECT COUNT(*)
      FROM apply ab
      WHERE ab.sid = ap.sid
      AND ab.itpName != ap.itpName 
-   ) AS count 
+   ) AS count_itp_apps
 FROM student sa
 LEFT JOIN apply ap
 ON ap.sID = sa.sID
-ORDER BY count DESC;
+ORDER BY count_itp_apps DESC;
 ```
 
 11. How many students have applied to each institution?
 
 ```sql
-
+SELECT DISTINCT i.itpName as itp_name, (
+     SELECT COUNT(*)
+     FROM apply ap
+     WHERE ap.itpName = i.itpName
+) AS count_students
+FROM itp i
+LEFT JOIN apply ap
+ON i.itpName = ap.itpname
+ORDER BY count_students DESC;
 ```
