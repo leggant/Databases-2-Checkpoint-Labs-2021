@@ -2,7 +2,7 @@
 
 ## Sakila Database
 
-You don’t have modification rights to sakila (or shouldn’t! Please tell me if you find that you  do). So these queries are all working with nulls
+You don’t have modification rights to sakila (or shouldn’t! Please tell me if you find that you do). So these queries are all working with nulls
 
 ### Queries
 
