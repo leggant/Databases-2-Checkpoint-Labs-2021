@@ -98,13 +98,14 @@ SELECT
 ```sql
 SELECT * FROM Student
 ORDER BY sizeHS;
+?
 ```
 
 7. List each student that has made an application and the number of ITP’s they have applied to.
    - This is a simple inner join but I did use something introduced in passing today to get this.
 
 ```sql
-
+?
 ```
 
 ## Subqueries and Outer Joins
