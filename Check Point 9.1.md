@@ -43,5 +43,30 @@ You might need to concatenate strings
 - Makes 'Banana'
 
 ```sql
+DROP PROCEDURE IF EXISTS fib;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` 
+PROCEDURE `fib`(IN MyNum INT, OUT Final VARCHAR(255))
+BEGIN
+    DECLARE x INT DEFAULT 0;
+    DECLARE y INT DEFAULT 1;
+    DECLARE res INT DEFAULT 0;
+    DECLARE Results VARCHAR(255);
+    SELECT CONCAT(x, ', ', y) INTO Results;
+    WHILE res <= MyNum DO 
+        SET res = x + y;
+        IF res <= MyNum THEN
+            SELECT CONCAT(Results, ', ', res) INTO Results;
+        END IF;
+        SET x = y;
+        SET y = res;
+    END WHILE;
+    SELECT Results INTO Final;
+END $$
+DELIMITER ;
 
+SET @x = 20;
+SET @result = '';
+CALL fib(@x, @result);
+SELECT @result AS Fibonacci;
 ```
