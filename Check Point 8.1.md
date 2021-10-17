@@ -14,7 +14,7 @@ END//
 DELIMITER ;
 ```
 
-```
+```sql
 SET @area=0.0, @radius=20.5;
 CALL circle_area(@radius, @area);
 SELECT CONCAT(ROUND(@area, 2), LOWER(' CMS')) AS 'Total Area';
