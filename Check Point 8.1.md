@@ -39,7 +39,7 @@ SELECT CONCAT(ROUND(@next_area, 2), LOWER(' CMS')) AS 'Total Area';
 3. Create a function to do the same job (area of circle)
 ```sql
 DELIMITER $$
-CREATE DEFINER=root@localhost 
+CREATE
 FUNCTION get_area(newArea DOUBLE) 
 RETURNS double
 DETERMINISTIC
@@ -59,7 +59,7 @@ SELECT ROUND(get_area(20.5),2);
 4. Create a function age(birthDate DATE) which returns the number of years between now() and birthDate
 ```sql
 DELIMITER $$
-CREATE DEFINER=root@localhost 
+CREATE
 FUNCTION get_years(birth YEAR(4)) 
 RETURNS int(3)
     DETERMINISTIC

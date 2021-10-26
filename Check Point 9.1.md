@@ -9,7 +9,7 @@
    *If you declare a variable of type TIME then you can set it using the CURTIME method. The format of the variable of type TIME is ‘12:00:00’*
 ```sql
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` 
+CREATE 
 FUNCTION `greeting`() 
 RETURNS varchar(30) 
 CHARSET utf8mb4
@@ -45,7 +45,7 @@ You might need to concatenate strings
 ```sql
 DROP PROCEDURE IF EXISTS fib;
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` 
+CREATE 
 PROCEDURE `fib`(IN MyNum INT, OUT Final VARCHAR(255))
 BEGIN
     DECLARE x INT DEFAULT 0;

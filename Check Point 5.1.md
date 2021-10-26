@@ -212,4 +212,3 @@ on rental.customer_id = customer.customer_id
 group by customer.customer_id
 order by customer.last_name;
 ```
-

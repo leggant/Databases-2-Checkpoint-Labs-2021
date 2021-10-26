@@ -100,7 +100,6 @@ SELECT * FROM Student
 ORDER BY sizeHS;
 ?
 ```
-
 7. List each student that has made an application and the number of ITP’s they have applied to.
    - This is a simple inner join but I did use something introduced in passing today to get this.
 
@@ -111,7 +110,6 @@ ORDER BY sizeHS;
 ## Subqueries and Outer Joins
 
 8. Which students have not applied anywhere?
-
 ```sql
 SELECT sa.sID, sa.sName 
 FROM student sa
@@ -121,7 +119,6 @@ WHERE ap.sId IS NULL;
 ```
 
 9. List a count of the number of applications made by each student
-
 ```sql
 SELECT DISTINCT sa.sID, sa.sName, (
      SELECT COUNT(*)
@@ -135,7 +132,6 @@ ORDER BY count DESC;
 ```
 
 10. List the number of institutions that each student has applied to:
-
 ```sql
 SELECT DISTINCT sa.sID as student_id, 
 sa.sName AS student_name, (
@@ -151,7 +147,6 @@ ORDER BY count_itp_apps DESC;
 ```
 
 11. How many students have applied to each institution?
-
 ```sql
 SELECT DISTINCT i.itpName as itp_name, (
      SELECT COUNT(DISTINCT ap.sID)
