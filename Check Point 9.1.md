@@ -9,11 +9,11 @@
    *If you declare a variable of type TIME then you can set it using the CURTIME method. The format of the variable of type TIME is ‘12:00:00’*
 ```sql
 DELIMITER $$
-CREATE 
-FUNCTION `greeting`() 
+CREATE FUNCTION `greeting`() 
 RETURNS varchar(30) 
 CHARSET utf8mb4
     DETERMINISTIC
+    CONTAINS SQL
     SQL SECURITY INVOKER
 BEGIN 
 		DECLARE result VARCHAR(30);
@@ -43,10 +43,12 @@ You might need to concatenate strings
 - Makes 'Banana'
 
 ```sql
+USE sakila;
 DROP PROCEDURE IF EXISTS fib;
 DELIMITER $$
-CREATE 
-PROCEDURE `fib`(IN MyNum INT, OUT Final VARCHAR(255))
+CREATE PROCEDURE fib
+(IN MyNum INT(4) UNSIGNED)
+SQL SECURITY INVOKER
 BEGIN
     DECLARE x INT DEFAULT 0;
     DECLARE y INT DEFAULT 1;
@@ -61,12 +63,13 @@ BEGIN
         SET x = y;
         SET y = res;
     END WHILE;
-    SELECT Results INTO Final;
+    SELECT Results AS Fibonacci;
 END $$
 DELIMITER ;
-
+```
+```sql
+USE sakila;
 SET @x = 20;
-SET @result = '';
-CALL fib(@x, @result);
+CALL fib(@x);
 SELECT @result AS Fibonacci;
 ```
